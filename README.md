@@ -182,5 +182,4 @@ Here are some hints on the RESTful behavior of each of the endpoints.
 
 ### 🎉 Conclusion
 This REST API provides a full range of operations for handling pictures in your application. Whether you're listing pictures, creating new ones, updating existing pictures, or deleting them, the API provides the necessary functionality to interact with the data.
-```
 
