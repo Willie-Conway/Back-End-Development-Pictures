@@ -44,6 +44,7 @@ def test_pictures_json_is_not_empty(client):
 
 def test_post_picture(picture, client):
     # create a brand new picture to upload
+    print(f"tests/test_api.py::test_post_picture {picture}")  # Print out the picture data for debugging
     res = client.post("/picture", data=json.dumps(picture),
                       content_type="application/json")
     assert res.status_code == 201
@@ -52,12 +53,15 @@ def test_post_picture(picture, client):
     assert res.status_code == 200
     assert res.json['length'] == 11
 
+
 def test_post_picture_duplicate(picture, client):
     # create a brand new picture to upload
+    print(f"tests/test_api.py::test_post_picture_duplicate {picture}")  # Print out the picture data for debugging
     res = client.post("/picture", data=json.dumps(picture),
                       content_type="application/json")
     assert res.status_code == 302
     assert res.json['Message'] == f"picture with id {picture['id']} already present"
+
 
 def test_update_picture_by_id(client, picture):
     id = '2'
@@ -73,6 +77,7 @@ def test_update_picture_by_id(client, picture):
     res = client.get(f'/picture/{id}')
     assert res.json['event_state'] == new_state
 
+
 def test_delete_picture_by_id(client):
     res = client.get("/count")
     assert res.json['length'] == 11
@@ -82,6 +87,3 @@ def test_delete_picture_by_id(client):
     assert res.json['length'] == 10
     res = client.delete("/picture/100")
     assert res.status_code == 404
-
-
-
